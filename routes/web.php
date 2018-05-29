@@ -1,6 +1,5 @@
 <?php
-use DataTables;
-use Yajra\DataTables\Html\Builder;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,19 +17,7 @@ Route::get('/', function () {
 
 Route::resource('passports','PassportController');
 
-
-Route::get('users', function(Builder $builder) {
-    if (request()->ajax()) {
-        return DataTables::of(User::query())->toJson();
-    }
-
-    $html = $builder->columns([
-                ['data' => 'id', 'name' => 'id', 'title' => 'Id'],
-                ['data' => 'name', 'name' => 'name', 'title' => 'Name'],
-                ['data' => 'email', 'name' => 'email', 'title' => 'Email'],
-                ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Created At'],
-                ['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Updated At'],
-            ]);
-
-    return view('users.index', compact('html'));
-});
+// Display view
+Route::get('datatable', 'DataTableController@datatable');
+// Get Data
+Route::get('datatable/getdata', 'DataTableController@getPosts')->name('datatable/getdata');

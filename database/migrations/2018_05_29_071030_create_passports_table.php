@@ -13,12 +13,12 @@ class CreatePassportsTable extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('passports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('date');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('number');
             $table->string('office');
             $table->string('filename');

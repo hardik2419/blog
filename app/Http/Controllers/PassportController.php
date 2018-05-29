@@ -10,6 +10,10 @@ class PassportController extends Controller
     {
         return view('create');
     }
+    public function getPosts()
+    {
+        return \DataTables::of(Passport::query())->make(true);
+    }
     public function store(Request $request)
     {
         if($request->hasfile('filename'))
@@ -32,7 +36,7 @@ class PassportController extends Controller
 	    	$passport->filename='';
 	    }
         $passport->save();
-        
+
         return redirect('passports')->with('success', 'Information has been added');
     }
     public function index()
